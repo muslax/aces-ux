@@ -1,14 +1,11 @@
-import { Welcome } from '../components/Welcome/Welcome';
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
 import Link from 'next/link';
-import useUser from 'lib/useUser';
+import { useContext } from 'react';
+import SessionContext from 'components/session-provider/SessionProvider';
 
 export default function HomePage() {
-  const { user } = useUser();
+  const { sessionUser: user } = useContext(SessionContext);
   return (
     <>
-      {/* <Welcome /> */}
-      {/* <ColorSchemeToggle /> */}
       <p>
         <Link href="/login">
           <a>Login</a>

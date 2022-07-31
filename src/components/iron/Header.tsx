@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import useUser from 'lib/useUser';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import fetchJson from 'lib/fetchJson';
 
 export default function Header() {
@@ -9,9 +8,23 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header>
+    <header
+      style={{
+        padding: '0.2rem',
+        color: '#fff',
+        backgroundColor: '#333',
+      }}
+    >
       <nav>
-        <ul>
+        <ul
+          style={{
+            display: 'flex',
+            gap: 15,
+            listStyle: 'none',
+            marginLeft: 0,
+            paddingLeft: 15,
+          }}
+        >
           <li>
             <Link href="/">
               <a>Home</a>
@@ -28,19 +41,7 @@ export default function Header() {
             <>
               <li>
                 <Link href="/profile-sg">
-                  <a>
-                    <span
-                      style={{
-                        marginRight: '.3em',
-                        verticalAlign: 'middle',
-                        borderRadius: '100%',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      <Image src={user.avatarUrl} width={32} height={32} alt="" />
-                    </span>
-                    Static Generation, (recommended)
-                  </a>
+                  <a>Static</a>
                 </Link>
               </li>
               <li>
@@ -66,25 +67,9 @@ export default function Header() {
           )}
         </ul>
       </nav>
-      <style jsx>{`
-        ul {
-          display: flex;
-          list-style: none;
-          margin-left: 0;
-          padding-left: 0;
-        }
-
-        li {
-          margin-right: 1rem;
-          display: flex;
-        }
-
-        li:first-child {
-          margin-left: auto;
-        }
-
+      <style>{`
         a {
-          color: #fff;
+          color: #ccc;
           text-decoration: none;
           display: flex;
           align-items: center;

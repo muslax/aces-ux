@@ -7,6 +7,7 @@ import { SWRConfig } from 'swr';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import fetchJson from 'lib/fetchJson';
+import { SessionProvider } from 'components/session-provider/SessionProvider';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -37,7 +38,9 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
           <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
             <NotificationsProvider>
-              <Component {...pageProps} />
+              <SessionProvider>
+                <Component {...pageProps} />
+              </SessionProvider>
             </NotificationsProvider>
           </MantineProvider>
         </ColorSchemeProvider>
