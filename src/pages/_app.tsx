@@ -5,10 +5,20 @@ import { MantineProvider, ColorScheme } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import fetchJson from 'lib/fetchJson';
 import { SessionProvider } from 'components/session-provider/SessionProvider';
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
 
-export default function App(props: AppProps & { colorScheme: ColorScheme }) {
-  const { Component, pageProps } = props;
+export type PageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
 
+type AppPropsWithLayout = AppProps & {
+  Component: PageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout ?? ((page) => page);
   return (
     <>
       <Head>
@@ -28,7 +38,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <MantineProvider theme={{}} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
             <SessionProvider>
-              <Component {...pageProps} />
+              <>{getLayout(<Component {...pageProps} />)}</>
             </SessionProvider>
           </NotificationsProvider>
         </MantineProvider>
@@ -36,7 +46,3 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     </>
   );
 }
-
-// App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-//   colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
-// });

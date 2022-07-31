@@ -1,16 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Layout from 'components/iron/Layout';
+import Layout2 from 'components/Layout/Layout';
 import useUser from 'lib/useUser';
-// import useEvents from "lib/useEvents";
 
 // Make sure to check https://nextjs.org/docs/basic-features/layouts for more info on how to use layouts
 export default function SgProfile() {
-  const { user } = useUser({
-    redirectTo: '/login',
-  });
-  // const { events } = useEvents(user);
-
-  // if (!user) return <></>;
+  const { user } = useUser({ redirectTo: '/login' });
 
   return (
     <Layout>
@@ -42,3 +37,11 @@ export default function SgProfile() {
     </Layout>
   );
 }
+
+SgProfile.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout2 allowLogin>
+      <main>{page}</main>
+    </Layout2>
+  );
+};

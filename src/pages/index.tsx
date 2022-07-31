@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { useContext } from 'react';
+import { ReactElement, useContext } from 'react';
 import SessionContext from 'components/session-provider/SessionProvider';
+import Layout from 'components/Layout/Layout';
 
 export default function HomePage() {
   const { sessionUser: user } = useContext(SessionContext);
@@ -22,3 +23,17 @@ export default function HomePage() {
     </>
   );
 }
+
+HomePage.getLayout = function getLayout(page: ReactElement) {
+  // return (
+  //   <>
+  //     <div>From getLayout</div>
+  //     {page}
+  //   </>
+  // );
+  return (
+    <Layout>
+      <main>{page}</main>
+    </Layout>
+  );
+};
