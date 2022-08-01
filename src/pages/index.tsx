@@ -17,6 +17,10 @@ export default function HomePage() {
         </Link>
         {` - `}
         <a href="/profile-ssr">SSR</a>
+        {` - `}
+        <Link href="/projects">
+          <a>Projects</a>
+        </Link>
       </p>
       {user?.isLoggedIn && <p>USER: {user.login}</p>}
       {!user?.isLoggedIn && <p>NO USER</p>}

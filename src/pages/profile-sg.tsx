@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
-import Layout from 'components/iron/Layout';
-import Layout2 from 'components/Layout/Layout';
+import Layout from 'components/Layout/Layout';
 import useUser from 'lib/useUser';
 
 // Make sure to check https://nextjs.org/docs/basic-features/layouts for more info on how to use layouts
@@ -8,7 +7,7 @@ export default function SgProfile() {
   const { user } = useUser({ redirectTo: '/login' });
 
   return (
-    <Layout>
+    <div>
       {user?.isLoggedIn && (
         <>
           <h1>Your GitHub profile</h1>
@@ -34,14 +33,14 @@ export default function SgProfile() {
           )}
         </>
       )}
-    </Layout>
+    </div>
   );
 }
 
 SgProfile.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout2 allowLogin>
+    <Layout>
       <main>{page}</main>
-    </Layout2>
+    </Layout>
   );
 };

@@ -9,7 +9,7 @@ import { User } from './api/user';
 export default function Login() {
   // here we just check if user is already logged in and redirect to profile
   const { mutateUser } = useUser({
-    redirectTo: '/profile-sg',
+    redirectTo: '/projects',
     redirectIfFound: true,
   });
 
