@@ -13,10 +13,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         *::after {
           box-sizing: border-box;
         }
+        html {
+          color: red;
+        }
 
         body {
           margin: 0;
-          color: #333;
+          // color: #333;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
             Arial, Noto Sans, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
             'Noto Color Emoji';

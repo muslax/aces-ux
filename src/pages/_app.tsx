@@ -1,24 +1,25 @@
-import { GetServerSidePropsContext } from 'next';
-import { useState } from 'react';
-import { AppProps } from 'next/app';
-import { getCookie, setCookie } from 'cookies-next';
 import Head from 'next/head';
+import { AppProps } from 'next/app';
 import { SWRConfig } from 'swr';
-import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import { MantineProvider, ColorScheme } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import fetchJson from 'lib/fetchJson';
 import { SessionProvider } from 'components/session-provider/SessionProvider';
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
+import { ProjectProvider } from 'components/ProjectProvider';
 
-export default function App(props: AppProps & { colorScheme: ColorScheme }) {
-  const { Component, pageProps } = props;
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
+export type PageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
 
-  const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
-    setColorScheme(nextColorScheme);
-    setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
-  };
+type AppPropsWithLayout = AppProps & {
+  Component: PageWithLayout;
+};
 
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout ?? ((page) => page);
   return (
     <>
       <Head>
@@ -35,20 +36,16 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           },
         }}
       >
-        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-          <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-            <NotificationsProvider>
-              <SessionProvider>
-                <Component {...pageProps} />
-              </SessionProvider>
-            </NotificationsProvider>
-          </MantineProvider>
-        </ColorSchemeProvider>
+        <MantineProvider theme={{}} withGlobalStyles withNormalizeCSS>
+          <NotificationsProvider>
+            <SessionProvider>
+              <ProjectProvider>
+                <>{getLayout(<Component {...pageProps} />)}</>
+              </ProjectProvider>
+            </SessionProvider>
+          </NotificationsProvider>
+        </MantineProvider>
       </SWRConfig>
     </>
   );
 }
-
-App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
-});

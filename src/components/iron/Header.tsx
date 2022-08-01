@@ -57,7 +57,7 @@ export default function Header() {
                   onClick={async (e) => {
                     e.preventDefault();
                     mutateUser(await fetchJson('/api/logout', { method: 'POST' }), false);
-                    router.push('/login');
+                    router.push('/');
                   }}
                 >
                   Logout

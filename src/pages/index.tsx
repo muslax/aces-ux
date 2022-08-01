@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { useContext } from 'react';
+import { ReactElement, useContext } from 'react';
 import SessionContext from 'components/session-provider/SessionProvider';
+import Layout from 'components/Layout/Layout';
 
 export default function HomePage() {
   const { sessionUser: user } = useContext(SessionContext);
@@ -16,9 +17,27 @@ export default function HomePage() {
         </Link>
         {` - `}
         <a href="/profile-ssr">SSR</a>
+        {` - `}
+        <Link href="/projects">
+          <a>Projects</a>
+        </Link>
       </p>
       {user?.isLoggedIn && <p>USER: {user.login}</p>}
       {!user?.isLoggedIn && <p>NO USER</p>}
     </>
   );
 }
+
+HomePage.getLayout = function getLayout(page: ReactElement) {
+  // return (
+  //   <>
+  //     <div>From getLayout</div>
+  //     {page}
+  //   </>
+  // );
+  return (
+    <Layout>
+      <main>{page}</main>
+    </Layout>
+  );
+};
