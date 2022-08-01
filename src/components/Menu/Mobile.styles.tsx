@@ -1,5 +1,5 @@
 import { createStyles } from '@mantine/core';
-export const useStyles = createStyles((theme) => ({
+export const useStyles = createStyles((theme, getRef) => ({
   nav: {
     height: 50,
     padding: '0 16px',
@@ -28,16 +28,20 @@ export const useStyles = createStyles((theme) => ({
   wrap: {
     height: 50,
     marginLeft: -12,
-    overflow: 'hidden',
+    // overflow: 'hidden',
     display: 'flex',
-    justifyContent: 'space-between',
+    alignItems: 'start',
+    // justifyContent: 'space-between',
     position: 'relative',
   },
 
   flex: {
     display: 'flex',
+    height: 50,
     flexWrap: 'wrap',
-    alignItems: 'center',
+    flexGrow: 1,
+    alignItems: 'start',
+    overflow: 'hidden',
   },
 
   item: {
@@ -81,7 +85,7 @@ export const useStyles = createStyles((theme) => ({
   menuwrap: {
     width: 36,
     flexShrink: 0,
-    display: 'flex',
-    alignItems: 'center',
+    // display: 'flex',
+    // alignItems: 'center',
   },
 }));

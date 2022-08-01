@@ -1,14 +1,13 @@
 import { useContext } from 'react';
 import Link from 'next/link';
-import { Button, Menu, Text } from '@mantine/core';
+import { useRouter } from 'next/router';
+import { Menu, Text } from '@mantine/core';
 import { CircleDashed, Logout, Settings, UserCircle } from 'tabler-icons-react';
 import SessionContext from 'components/session-provider/SessionProvider';
 import Container from './Container';
 import { useStyles } from './Layout.styles';
-import { NextLink } from '@mantine/next';
 import fetchJson from 'lib/fetchJson';
 import useUser from 'lib/useUser';
-import { useRouter } from 'next/router';
 
 export default function Header({ yScroll }: { yScroll?: number }) {
   const { sessionUser } = useContext(SessionContext);
@@ -23,9 +22,18 @@ export default function Header({ yScroll }: { yScroll?: number }) {
     <div className={root}>
       <Container>
         <div className={classes.headerwrap}>
-          <CircleDashed size={38} />
+          {/* <CircleDashed size={38} /> */}
+          <div
+            style={{
+              width: 38,
+              height: 38,
+              borderRadius: 100,
+              backgroundColor: '#ececec',
+              border: '1px solid #789',
+            }}
+          />
           <div style={{ display: 'flex', flexGrow: 1, fontWeight: 600 }}>
-            <Link href="/">
+            <Link href={sessionUser?.isLoggedIn ? '/projects' : '/'}>
               <a style={{ color: 'black', textDecoration: 'none' }}>Aces Partner</a>
             </Link>
           </div>
@@ -50,7 +58,7 @@ export default function Header({ yScroll }: { yScroll?: number }) {
                     onClick={async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                       e.preventDefault();
                       mutateUser(await fetchJson('/api/logout', { method: 'POST' }), false);
-                      router.push('/login');
+                      router.push('/');
                     }}
                   >
                     Logout

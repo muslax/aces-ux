@@ -7,6 +7,7 @@ import fetchJson from 'lib/fetchJson';
 import { SessionProvider } from 'components/session-provider/SessionProvider';
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
+import { ProjectProvider } from 'components/ProjectProvider';
 
 export type PageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -38,7 +39,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         <MantineProvider theme={{}} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
             <SessionProvider>
-              <>{getLayout(<Component {...pageProps} />)}</>
+              <ProjectProvider>
+                <>{getLayout(<Component {...pageProps} />)}</>
+              </ProjectProvider>
             </SessionProvider>
           </NotificationsProvider>
         </MantineProvider>

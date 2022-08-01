@@ -32,7 +32,7 @@ export default function Hero(props: HeroProps) {
                   </div>
                   <div className={classes.right}>
                     <Link href="/new">
-                      <Button component="a" size="md" color="dark">
+                      <Button component="a" size="sm" color="dark" style={{ fontWeight: 500 }}>
                         New Project
                       </Button>
                     </Link>

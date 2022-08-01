@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { LinkProps } from './Menu';
 import { useStyles } from './Mobile.styles';
+import { DotsVertical } from 'tabler-icons-react';
 
 export default function Mobilenav({ links, yScroll }: { links: LinkProps[]; yScroll: number }) {
   const { classes, cx } = useStyles();
@@ -37,19 +38,36 @@ export default function Mobilenav({ links, yScroll }: { links: LinkProps[]; yScr
               <LinkItem key={link.href} link={link} />
             ))}
           </div>
-          <div className={classes.menuwrap}>
+          {/* <div className={classes.menuwrap}> */}
+          <div
+            style={{
+              // width: 150,
+              // height: 50,
+              // position: 'relative',
+              display: 'flex',
+              justifyContent: 'end',
+              paddingTop: 18,
+            }}
+          >
             {shadowLinks.length > 0 && (
-              <Menu>
-                {shadowLinks.map((link) => (
-                  <Menu.Item
-                    key={link.href}
-                    component={NextLink}
-                    href={link.href}
-                    style={{ fontSize: 14.5, fontWeight: 500 }}
-                  >
-                    {link.label}
-                  </Menu.Item>
-                ))}
+              <Menu position="bottom-end" withArrow>
+                <Menu.Target>
+                  <div style={{ display: 'flex' }}>
+                    <DotsVertical size={16} />
+                  </div>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  {shadowLinks.map((link) => (
+                    <Menu.Item
+                      key={link.href}
+                      component={NextLink}
+                      href={link.href}
+                      style={{ fontSize: 14, fontWeight: 400 }}
+                    >
+                      {link.label}
+                    </Menu.Item>
+                  ))}
+                </Menu.Dropdown>
               </Menu>
             )}
           </div>
@@ -60,13 +78,13 @@ export default function Mobilenav({ links, yScroll }: { links: LinkProps[]; yScr
 }
 
 function LinkItem({ link }: { link: { href: string; label: string } }) {
-  const { pathname } = useRouter();
+  const { asPath } = useRouter();
   const { classes, cx } = useStyles();
   return (
     <Link href={link.href}>
       <a
         className={cx(classes.item, {
-          [classes.active]: pathname == link.href,
+          [classes.active]: asPath == link.href,
         })}
       >
         <span>{link.label}</span>

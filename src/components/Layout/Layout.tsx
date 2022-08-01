@@ -32,7 +32,7 @@ export default function Layout({ allowLogin, type, title, children }: LayoutProp
           {/* <Hero type={type || 'ABCD'} title={title || 'Untitled'} yScroll={scroll.y} /> */}
           <Box
             py={16}
-            style={{ backgroundColor: `${theme.colors.violet[0]}50`, minHeight: 'calc(100vh)' }}
+            style={{ backgroundColor: `${theme.colors.gray[2]}50`, minHeight: 'calc(100vh)' }}
           >
             <Container>{children}</Container>
           </Box>
