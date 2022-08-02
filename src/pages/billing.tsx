@@ -23,7 +23,7 @@ export default function Billing() {
 
 Billing.getLayout = function getLayout(page: ReactElement) {
   return (
-    <UserLayout type="Cordoba" title="Billing">
+    <UserLayout type="Aces Partner" title="Billing">
       {page}
     </UserLayout>
   );

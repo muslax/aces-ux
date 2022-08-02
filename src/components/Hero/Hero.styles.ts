@@ -36,7 +36,7 @@ export const useStyles = createStyles((theme, { color }: { color?: string }) => 
   bgWrap: {
     margin: '0 -100px',
     padding: '0 100px',
-    backgroundImage: 'url("ccchaos.svg")',
+    backgroundImage: 'url("/ccchaos.svg")',
     backgroundSize: 600,
     backgroundPositionX: '90%',
     backgroundPositionY: '70%',

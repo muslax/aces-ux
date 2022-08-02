@@ -1,10 +1,13 @@
+import { ReactElement, useContext } from 'react';
 import { Text } from '@mantine/core';
-import UserLayout from 'components/Layout/UserLayout';
 import useUser from 'lib/useUser';
-import { ReactElement } from 'react';
+import ProjectContext from 'components/ProjectProvider';
+import ProjectLayout from 'components/Layout/ProjectLayout';
+import Pojo from 'components/Pojo';
 
-export default function Clients() {
+export default function Project() {
   const { user } = useUser({ redirectTo: '/login' });
+  const { projectContext } = useContext(ProjectContext);
   // Prevent flickering (rendering content) when accessed by unlogged user
   if (!user || !user.isLoggedIn) return <></>;
   return (
@@ -16,15 +19,12 @@ export default function Clients() {
           per-page basis. Since we're returning a function, we can have complex nested layouts if
           desired.
         </Text>
+        <Pojo object={projectContext} />
       </div>
     </>
   );
 }
 
-Clients.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <UserLayout type="Aces Corporate" title="Clients">
-      {page}
-    </UserLayout>
-  );
+Project.getLayout = function getLayout(page: ReactElement) {
+  return <ProjectLayout title="Peserta">{page}</ProjectLayout>;
 };

@@ -10,10 +10,9 @@ import SessionContext from 'components/session-provider/SessionProvider';
 import Container from './Container';
 import Header from './Header';
 import { useStyles } from './Layout.styles';
-import { getProjectMenu, LinkProps, UserMenu } from 'components/Menu/Menu';
+import { getProjectMenu, LinkProps } from 'components/Menu/Menu';
 import useAuthApi from 'lib/useAuthApi';
 import ProjectContext from 'components/ProjectProvider';
-import { ProjectInfo } from 'lib/queries/getProject';
 import Pojo from 'components/Pojo';
 
 type LayoutProps = {
@@ -69,9 +68,7 @@ export default function ProjectLayout({ title, children }: LayoutProps) {
               <Sidebar links={links} />
             </aside>
             <main className={classes.main}>
-              <div>asPath: {router.asPath}</div>
               <>{children}</>
-              <Pojo object={links} />
             </main>
           </div>
         </div>

@@ -7,12 +7,14 @@ import {
   Folder,
   Folders,
   HeartRateMonitor,
+  ListCheck,
   Messages,
   Report,
   ReportMoney,
   Select,
   Settings,
   Speakerphone,
+  Users,
 } from 'tabler-icons-react';
 
 export type LinkProps = {
@@ -22,11 +24,6 @@ export type LinkProps = {
 };
 
 export const UserMenu: LinkProps[] = [
-  {
-    href: '/ui',
-    label: 'UI-UX',
-    icon: <Aperture size={18} />,
-  },
   {
     href: '/projects',
     label: 'Projects',
@@ -72,6 +69,16 @@ const projectMenu: LinkProps[] = [
     href: '/setup',
     label: 'Setup',
     icon: <Settings size={18} />,
+  },
+  {
+    href: '/peserta',
+    label: 'Peserta',
+    icon: <Users size={18} />,
+  },
+  {
+    href: '/deploy',
+    label: 'Deployment',
+    icon: <ListCheck size={18} />,
   },
   {
     href: '/monitoring',
