@@ -16,6 +16,8 @@ export type FrameColor =
 interface FrameStyleProps {
   mt?: number;
   mb?: number;
+  h?: number;
+  w?: number;
   rounded?: boolean;
   shadow?: boolean;
   color?: string;
@@ -36,6 +38,8 @@ export const useStyles = createStyles((theme, props: FrameStyleProps) => {
 
   return {
     root: {
+      width: props.w || 'auto',
+      hight: props.h || 'auto',
       marginTop: props.mt || 0,
       marginBottom: props.mb || 0,
       position: 'relative',

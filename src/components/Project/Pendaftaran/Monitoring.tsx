@@ -1,14 +1,12 @@
 import { Text, useMantineTheme } from '@mantine/core';
 import Notice from 'components/Notice/Notice';
 import Show from 'components/Show';
-import { randomNames } from 'lib/names/names';
 import { useState } from 'react';
 
-export function Monitoring() {
+export function Monitoring({ names }: { names: string[] }) {
   const theme = useMantineTheme();
   const colors = theme.colors;
   const [step, setStep] = useState(1);
-  const names = randomNames(200);
 
   return (
     <>
@@ -60,6 +58,7 @@ export function Monitoring() {
             <div style={{ fontSize: 48, fontWeight: 800, lineHeight: 1.25 }}>4711</div>
             <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase' }}>Orang</div>
           </div>
+          {/* Petitopak - Infused Potatoes */}
           <div
             style={{
               color: colors.dark[4],

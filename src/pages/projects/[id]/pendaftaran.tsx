@@ -1,39 +1,17 @@
-import { ReactElement, useContext } from 'react';
-import { Tabs } from '@mantine/core';
+import { ReactElement } from 'react';
 import useUser from 'lib/useUser';
-import ProjectContext from 'components/ProjectProvider';
 import ProjectLayout from 'components/Layout/ProjectLayout';
-import PTabs from 'components/Tabs/PTabs';
-import { Settings, Monitoring } from 'components/Project';
+import { Pendaftaran } from 'components/Project/Pendaftaran/Pendaftaran';
 
 export default function Project() {
   const { user } = useUser({ redirectTo: '/login' });
-  const { projectContext } = useContext(ProjectContext);
+  // const { projectContext } = useContext(ProjectContext);
 
   // =====================================================================
   // Prevent flickering (rendering content) when accessed by unlogged user
   if (!user || !user.isLoggedIn) return <></>;
   // =====================================================================
-  return (
-    <>
-      <PTabs value="Settings">
-        <Tabs.List>
-          <Tabs.Tab value="Settings">Settings</Tabs.Tab>
-          <Tabs.Tab value="Monitoring">Monitoring</Tabs.Tab>
-          <Tabs.Tab value="Screening">Screening</Tabs.Tab>
-        </Tabs.List>
-        <Tabs.Panel value="Settings">
-          <Settings />
-        </Tabs.Panel>
-        <Tabs.Panel value="Monitoring">
-          <Monitoring />
-        </Tabs.Panel>
-        <Tabs.Panel value="Screening">
-          <div>Screening content</div>
-        </Tabs.Panel>
-      </PTabs>
-    </>
-  );
+  return <Pendaftaran />;
 }
 
 Project.getLayout = function getLayout(page: ReactElement) {

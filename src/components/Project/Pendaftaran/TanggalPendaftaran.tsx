@@ -34,6 +34,7 @@ export function TanggalPendaftaran() {
           </Text>
           <TextInput
             label="https://gorekrut.id/"
+            defaultValue="abc-xyz"
             styles={{
               root: {
                 position: 'relative',

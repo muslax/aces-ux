@@ -22,11 +22,25 @@ export const useStyles = createStyles((theme) => ({
   },
 
   pageFlex: {
-    display: 'flex',
-    alignItems: 'start',
-    justifyContent: 'center',
+    // display: 'flex',
+    // alignItems: 'start',
+    // justifyContent: 'center',
+    /*
+    Disable flex below 768
+    ======================
+    When using flex, ScrollArea can't horizontal scroll properly.
+    */
+    maxWidth: 620,
+    marginLeft: 'auto',
+    marginRight: 'auto',
     paddingTop: 40,
     paddingBottom: 80,
+    '@media (min-width: 768px)': {
+      display: 'flex',
+      alignItems: 'start',
+      justifyContent: 'center',
+      maxWidth: '100%',
+    },
   },
 
   aside: {

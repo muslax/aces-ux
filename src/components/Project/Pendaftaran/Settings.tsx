@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Divider, Space, Text } from '@mantine/core';
-import { TanggalPendaftaran } from '../TanggalPendaftaran/TanggalPendaftaran';
+import { TanggalPendaftaran } from './TanggalPendaftaran';
 import { DataPendaftaran } from './DataPendaftaran';
 import { FormDataPendaftaran } from './FormDataPendaftaran';
 import { FieldPendaftaran } from '../FieldPendaftaranRekrutment';

@@ -1,5 +1,6 @@
-import { Text } from '@mantine/core';
+import { Center, Text } from '@mantine/core';
 import Container from 'components/Layout/Container';
+import AcesOperator from 'components/Logo/AcesOperator';
 import { useStyles } from './Footer.styles';
 
 export default function Footer() {
@@ -7,9 +8,14 @@ export default function Footer() {
   return (
     <footer className={classes.root}>
       <Container>
-        <Text size="xs" sx={{ textAlign: 'center' }}>
-          ACES by Gaia
-        </Text>
+        <Center>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <AcesOperator h={24} />
+            <Text size="sm" sx={{ textAlign: 'center', fontStyle: 'italic' }}>
+              By Gaia Solutions
+            </Text>
+          </div>
+        </Center>
       </Container>
     </footer>
   );

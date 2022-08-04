@@ -8,6 +8,8 @@ import { IconEdit, IconPencil, IconLock, IconLockOpen } from '@tabler/icons';
 interface FrameProps {
   mt?: number;
   mb?: number;
+  h?: number;
+  w?: number;
   rounded?: boolean;
   shadow?: boolean;
   title?: string;
@@ -26,6 +28,8 @@ export default function Frame(props: FrameProps) {
   const { classes } = useStyles({
     mt: props.mt,
     mb: props.mb,
+    w: props.w,
+    h: props.h,
     rounded: props.rounded,
     shadow: props.shadow,
     color: props.color,
