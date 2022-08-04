@@ -7,23 +7,32 @@ type NoticeProps = StyleProps & {
   // color?: FrameColor;
   // mt?: number;
   // mb?: number;
+  isOpen?: boolean;
   closeable?: boolean;
   children: ReactNode;
+  onClose?: () => void;
 };
 
 export default function Notice(props: NoticeProps) {
-  const { color, mt, mb, closeable } = props;
+  const { color, mt, mb, isOpen, closeable, onClose } = props;
   const { classes } = useStyles({ color, mt, mb });
   const [show, setShow] = useState(true);
   return (
     <>
-      <Collapse in={show}>
+      <Collapse in={isOpen || show}>
         <div className={classes.root}>
           <div className={classes.wrapper}>
             <div className={classes.main}>{props.children}</div>
             {closeable && (
               <div className={classes.rightSection}>
-                <ActionIcon size={20} className={classes.action} onClick={() => setShow(!show)}>
+                <ActionIcon
+                  size={20}
+                  className={classes.action}
+                  onClick={() => {
+                    setShow(false);
+                    if (onClose) onClose();
+                  }}
+                >
                   <IconX className={classes.actionIcon} />
                 </ActionIcon>
               </div>
@@ -49,6 +58,9 @@ const useStyles = createStyles((theme, { color, mt, mb }: StyleProps, getRef) =>
       marginTop: mt || 0,
       marginBottom: mb || 10,
       ':hover': {
+        [`& .${getRef('rightSection')}`]: {
+          borderColor: baseColor[4],
+        },
         [`& .${getRef('actionIcon')}`]: {
           color: theme.colors.dark[3],
         },
@@ -72,6 +84,7 @@ const useStyles = createStyles((theme, { color, mt, mb }: StyleProps, getRef) =>
     },
 
     rightSection: {
+      ref: getRef('rightSection'),
       padding: '8px 8px',
       display: 'flex',
       alignItems: 'center',

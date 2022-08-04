@@ -4,7 +4,7 @@ import useUser from 'lib/useUser';
 import ProjectContext from 'components/ProjectProvider';
 import ProjectLayout from 'components/Layout/ProjectLayout';
 import PTabs from 'components/Tabs/PTabs';
-import { Settings } from 'components/Project/Pendaftaran/Settings';
+import { Settings, Monitoring } from 'components/Project';
 
 export default function Project() {
   const { user } = useUser({ redirectTo: '/login' });
@@ -26,7 +26,7 @@ export default function Project() {
           <Settings />
         </Tabs.Panel>
         <Tabs.Panel value="Monitoring">
-          <div>Monitoring content</div>
+          <Monitoring />
         </Tabs.Panel>
         <Tabs.Panel value="Screening">
           <div>Screening content</div>
