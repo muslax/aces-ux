@@ -36,7 +36,20 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           },
         }}
       >
-        <MantineProvider theme={{}} withGlobalStyles withNormalizeCSS>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
+            primaryColor: 'violet',
+            fontSizes: {
+              xs: 12,
+              sm: 13,
+              md: 14.25,
+              lg: 16,
+              xl: 18,
+            },
+          }}
+        >
           <NotificationsProvider>
             <SessionProvider>
               <ProjectProvider>

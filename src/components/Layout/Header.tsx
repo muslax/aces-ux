@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Menu, Text } from '@mantine/core';
-import { CircleDashed, Logout, Settings, UserCircle } from 'tabler-icons-react';
+import { Button, Menu, Text } from '@mantine/core';
+import { Logout, Settings, UserCircle } from 'tabler-icons-react';
 import SessionContext from 'components/session-provider/SessionProvider';
 import Container from './Container';
 import { useStyles } from './Layout.styles';
@@ -22,7 +22,6 @@ export default function Header({ yScroll }: { yScroll?: number }) {
     <div className={root}>
       <Container>
         <div className={classes.headerwrap}>
-          {/* <CircleDashed size={38} /> */}
           <div
             style={{
               width: 38,
@@ -32,12 +31,15 @@ export default function Header({ yScroll }: { yScroll?: number }) {
               border: '1px solid #789',
             }}
           />
-          <div style={{ display: 'flex', flexGrow: 1, fontWeight: 600 }}>
+          <div style={{ display: 'flex', flexGrow: 1, fontWeight: 500 }}>
             <Link href={sessionUser?.isLoggedIn ? '/projects' : '/'}>
               <a style={{ color: 'black', textDecoration: 'none' }}>Aces Partner</a>
             </Link>
           </div>
-          <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
+            <Link href="/ux">
+              <a style={{ fontSize: 14, color: '#333', textDecoration: 'none' }}>UI</a>
+            </Link>
             {sessionUser?.isLoggedIn && (
               <Menu position="bottom-end" withArrow>
                 <Menu.Target>
@@ -65,6 +67,13 @@ export default function Header({ yScroll }: { yScroll?: number }) {
                   </Menu.Item>
                 </Menu.Dropdown>
               </Menu>
+            )}
+            {(!sessionUser || !sessionUser?.isLoggedIn) && (
+              <Link href="/login">
+                <Button component="a" variant="outline" color="gray" size="xs" style={{}}>
+                  Login
+                </Button>
+              </Link>
             )}
           </div>
         </div>

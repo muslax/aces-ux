@@ -6,6 +6,8 @@ export default function Pojo({ object }: { object: any }) {
         color: 'red',
         backgroundColor: '#ffd',
         fontSize: 12,
+        width: '100%',
+        maxWidth: '100%',
         maxHeight: 400,
         overflowX: 'auto',
         overflowY: 'auto',

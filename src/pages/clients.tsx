@@ -23,7 +23,7 @@ export default function Clients() {
 
 Clients.getLayout = function getLayout(page: ReactElement) {
   return (
-    <UserLayout type="Cordoba" title="Clients">
+    <UserLayout type="Aces Corporate" title="Clients">
       {page}
     </UserLayout>
   );
