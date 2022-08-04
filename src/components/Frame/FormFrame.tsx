@@ -154,7 +154,7 @@ export default function FormFrame(props: FormFrameProps) {
           </div>
         )}
         <div className={classes.body}>
-          <Stack spacing={8}>
+          <Stack spacing={10}>
             {props.inputDefs.map((def) => (
               <>{renderInput(def, def.label)}</>
             ))}

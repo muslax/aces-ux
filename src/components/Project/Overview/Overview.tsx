@@ -1,8 +1,10 @@
 import { Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import FormFrame, { InputDef } from 'components/Frame/FormFrame';
+import Notice from 'components/Notice/Notice';
+import { useState } from 'react';
 
-export default function Overview() {
+export function Overview() {
   const sampleForm = useForm({
     initialValues: {
       id: 'abcde',
@@ -19,8 +21,41 @@ export default function Overview() {
     { field: 'admin', type: 'text', label: 'Administrator', editable: false },
   ];
 
+  const [editing, setEditing] = useState(false);
+
+  // const { classes } = useStyles({});
   return (
     <>
+      <Notice mb={0} color="pink" closeable>
+        <Text size="md">
+          <strong>State-based disposeable Notice.</strong>
+          {` `}
+          If you need multiple layouts, you can add a property getLayout to your page, allowing you
+          to return a React component for the layout. This allows you to define the layout on a
+          per-page basis. Since we're returning a function, we can have complex nested layouts if
+          desired.
+        </Text>
+      </Notice>
+      <Notice mb={0} color="green" closeable>
+        <Text size="md">
+          <strong>State-based Notice.</strong>
+          {` `}
+          If you need multiple layouts, you can add a property getLayout to your page, allowing you
+          to return a React component for the layout. This allows you to define the layout on a
+          per-page basis. Since we're returning a function, we can have complex nested layouts if
+          desired.
+        </Text>
+      </Notice>
+      <Notice closeable color="indigo">
+        <Text size="md">
+          <strong>State-based disposeable Notice.</strong>
+          {` `}
+          If you need multiple layouts, you can add a property getLayout to your page, allowing you
+          to return a React component for the layout. This allows you to define the layout on a
+          per-page basis. Since we're returning a function, we can have complex nested layouts if
+          desired.
+        </Text>
+      </Notice>
       <Text size="md">
         <strong>State-based content.</strong>
         {` `}

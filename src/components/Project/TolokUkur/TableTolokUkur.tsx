@@ -17,7 +17,7 @@ type TableTolokUkurProps = {
   setEditing: Dispatch<boolean>;
 };
 
-export default function TableTolokUkur(props: TableTolokUkurProps) {
+export function TableTolokUkur(props: TableTolokUkurProps) {
   const { classes } = useStyles();
   const rows = props.data.map((row, index) => {
     return (

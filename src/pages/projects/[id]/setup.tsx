@@ -5,8 +5,8 @@ import useUser from 'lib/useUser';
 import ProjectContext from 'components/ProjectProvider';
 import ProjectLayout from 'components/Layout/ProjectLayout';
 import Pojo from 'components/Pojo';
-import TableTolokUkur from 'components/Project/TolokUkur/TableTolokUkur';
 import { EditTolokUkur } from 'components/Project/TolokUkur/EditTolokUkur';
+import { TableTolokUkur } from 'components/Project';
 
 // type TolokUkur = {
 //   label: string;

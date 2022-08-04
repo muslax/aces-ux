@@ -118,8 +118,8 @@ export const useStyles = createStyles((theme, props: FrameStyleProps) => {
     description: {
       fontSize: 13,
       lineHeight: 1.36,
-      marginTop: 2,
-      // marginBottom: 2,
+      marginTop: 10,
+      marginBottom: 5,
       marginRight: 30,
       color: theme.colors.gray[7],
       // background: theme.colors.yellow[4],

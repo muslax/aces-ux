@@ -2,7 +2,7 @@ import { ReactElement, useContext } from 'react';
 import useUser from 'lib/useUser';
 import ProjectContext from 'components/ProjectProvider';
 import ProjectLayout from 'components/Layout/ProjectLayout';
-import Overview from 'components/Project/Overview/Overview';
+import { Overview } from 'components/Project';
 
 export default function Project() {
   const { user } = useUser({ redirectTo: '/login' });
