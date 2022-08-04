@@ -1,10 +1,9 @@
 import { createStyles, ScrollArea, Stack, Table, Text, useMantineTheme } from '@mantine/core';
-import { useElementSize } from '@mantine/hooks';
 import Frame from 'components/Frame/Frame';
 import Chekbox from 'components/Inputs/Chekbox';
 import Notice from 'components/Notice/Notice';
 import Show from 'components/Show';
-import { Children, ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
   scrollArea: {
