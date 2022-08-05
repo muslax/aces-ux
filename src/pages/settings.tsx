@@ -3,7 +3,7 @@ import UserLayout from 'components/Layout/UserLayout';
 import useUser from 'lib/useUser';
 import { ReactElement } from 'react';
 
-export default function Settings() {
+export default function SettingsPage() {
   const { user } = useUser({ redirectTo: '/login' });
   // Prevent flickering (rendering content) when accessed by unlogged user
   if (!user || !user.isLoggedIn) return <></>;
@@ -21,9 +21,9 @@ export default function Settings() {
   );
 }
 
-Settings.getLayout = function getLayout(page: ReactElement) {
+SettingsPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <UserLayout type="Cordoba" title="Settings">
+    <UserLayout type="user-layout" page="settings" title="Settings">
       {page}
     </UserLayout>
   );

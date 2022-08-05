@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { LinkProps } from './Menu';
+import { AppRoute } from './Menu';
 import { useStyles } from './Sidebar.styles';
 
-export default function Sidebar({ links }: { links: LinkProps[] }) {
+export default function Sidebar({ links }: { links: AppRoute[] }) {
   const { asPath } = useRouter();
   const { classes } = useStyles({});
   return (
@@ -15,7 +15,7 @@ export default function Sidebar({ links }: { links: LinkProps[] }) {
   );
 }
 
-function SidebarItem({ link, active }: { link: LinkProps; active?: boolean }) {
+function SidebarItem({ link, active }: { link: AppRoute; active?: boolean }) {
   const { classes } = useStyles({ active: active });
   return (
     <li className={classes.itemWrap}>

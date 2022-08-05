@@ -6,9 +6,8 @@ import useUser from 'lib/useUser';
 import Link from 'next/link';
 import { ReactElement, useContext } from 'react';
 
-export default function Projects() {
+export default function ProjectsPage() {
   const { user } = useUser({ redirectTo: '/login' });
-  // Test access project context outside ProjectLayout
   const { projectContext } = useContext(ProjectContext);
   // Prevent flickering (rendering content) when accessed by unlogged user
   if (!user || !user.isLoggedIn) return <></>;
@@ -60,9 +59,9 @@ export default function Projects() {
   );
 }
 
-Projects.getLayout = function getLayout(page: ReactElement) {
+ProjectsPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <UserLayout type="Cordoba" title="Projects">
+    <UserLayout type="user-layout" page="projects" title="Projects">
       {page}
     </UserLayout>
   );

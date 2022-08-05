@@ -3,10 +3,10 @@ import { Button, createStyles, Table, Text, Title } from '@mantine/core';
 import { IconCheck, IconCircleCheck } from '@tabler/icons';
 import useUser from 'lib/useUser';
 import ProjectContext from 'components/ProjectProvider';
-import ProjectLayout from 'components/Layout/ProjectLayout';
 import Pojo from 'components/Pojo';
 import { EditTolokUkur } from 'components/Project/TolokUkur/EditTolokUkur';
 import { TableTolokUkur } from 'components/Project';
+import UserLayout from 'components/Layout/UserLayout';
 
 // type TolokUkur = {
 //   label: string;
@@ -87,5 +87,9 @@ export default function Project() {
 }
 
 Project.getLayout = function getLayout(page: ReactElement) {
-  return <ProjectLayout title="Project Setup">{page}</ProjectLayout>;
+  return (
+    <UserLayout type="project-layout" page="setup" title="Project Setup">
+      {page}
+    </UserLayout>
+  );
 };

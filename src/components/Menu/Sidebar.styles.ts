@@ -42,7 +42,7 @@ export const useStyles = createStyles((theme, { active }: { active?: boolean }, 
   label: {
     ref: getRef('label'),
     color: active ? theme.colors.indigo[7] : '',
-    letterSpacing: active ? -0.15 : '',
+    // letterSpacing: active ? -0.15 : '',
     textUnderlineOffset: 3,
     textDecorationThickness: 2,
   },

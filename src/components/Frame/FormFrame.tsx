@@ -154,11 +154,7 @@ export default function FormFrame(props: FormFrameProps) {
           </div>
         )}
         <div className={classes.body}>
-          <Stack spacing={10}>
-            {props.inputDefs.map((def) => (
-              <>{renderInput(def, def.label)}</>
-            ))}
-          </Stack>
+          <Stack spacing={10}>{props.inputDefs.map((def) => renderInput(def, def.label))}</Stack>
         </div>
         {props.form && (
           <Collapse in={editing}>

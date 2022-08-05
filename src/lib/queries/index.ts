@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import getLayout from './getLayout';
 import getProject from './getProject';
 
 type ApiQuery = {
@@ -7,4 +8,5 @@ type ApiQuery = {
 
 export const AUTH_QUERIES: ApiQuery = {
   'get-project': getProject,
+  'get-layout': getLayout,
 };

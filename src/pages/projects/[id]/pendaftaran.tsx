@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import useUser from 'lib/useUser';
-import ProjectLayout from 'components/Layout/ProjectLayout';
 import { Pendaftaran } from 'components/Project/Pendaftaran/Pendaftaran';
+import UserLayout from 'components/Layout/UserLayout';
 
 export default function Project() {
   const { user } = useUser({ redirectTo: '/login' });
@@ -15,5 +15,9 @@ export default function Project() {
 }
 
 Project.getLayout = function getLayout(page: ReactElement) {
-  return <ProjectLayout title="Pendaftaran">{page}</ProjectLayout>;
+  return (
+    <UserLayout type="project-layout" page="pendaftaran" title="Pendaftaran">
+      {page}
+    </UserLayout>
+  );
 };

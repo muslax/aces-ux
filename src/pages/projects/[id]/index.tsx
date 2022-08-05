@@ -1,8 +1,8 @@
 import { ReactElement, useContext } from 'react';
 import useUser from 'lib/useUser';
 import ProjectContext from 'components/ProjectProvider';
-import ProjectLayout from 'components/Layout/ProjectLayout';
 import { Overview } from 'components/Project';
+import UserLayout from 'components/Layout/UserLayout';
 
 export default function Project() {
   const { user } = useUser({ redirectTo: '/login' });
@@ -18,5 +18,9 @@ export default function Project() {
 }
 
 Project.getLayout = function getLayout(page: ReactElement) {
-  return <ProjectLayout title="Project Info">{page}</ProjectLayout>;
+  return (
+    <UserLayout type="project-layout" page="overview" title="Projects">
+      {page}
+    </UserLayout>
+  );
 };

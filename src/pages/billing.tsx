@@ -3,7 +3,7 @@ import UserLayout from 'components/Layout/UserLayout';
 import useUser from 'lib/useUser';
 import { ReactElement } from 'react';
 
-export default function Billing() {
+export default function BillingPage() {
   const { user } = useUser({ redirectTo: '/login' });
   // Prevent flickering (rendering content) when accessed by unlogged user
   if (!user || !user.isLoggedIn) return <></>;
@@ -21,9 +21,9 @@ export default function Billing() {
   );
 }
 
-Billing.getLayout = function getLayout(page: ReactElement) {
+BillingPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <UserLayout type="Aces Partner" title="Billing">
+    <UserLayout type="user-layout" page="billing" title="Billing">
       {page}
     </UserLayout>
   );

@@ -1,24 +1,24 @@
-import { Menu } from '@mantine/core';
-import { useElementSize } from '@mantine/hooks';
-import { NextLink } from '@mantine/next';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { LinkProps } from './Menu';
+import { useRouter } from 'next/router';
+import { Menu } from '@mantine/core';
+import { NextLink } from '@mantine/next';
+import { useElementSize } from '@mantine/hooks';
+import { AppRoute } from './Menu';
 import { useStyles } from './Mobile.styles';
 import { DotsVertical } from 'tabler-icons-react';
 
-export default function Mobilenav({ links, yScroll }: { links: LinkProps[]; yScroll: number }) {
+export default function Mobilenav({ links, yScroll }: { links: AppRoute[]; yScroll: number }) {
   const { classes, cx } = useStyles();
   const navClasses = cx(classes.nav, {
     [classes.navFixed]: yScroll > 70,
     [classes.navScrolled]: yScroll >= 163,
   });
   const { ref, width } = useElementSize();
-  const [shadowLinks, setShadowLinks] = useState<LinkProps[]>([]);
+  const [shadowLinks, setShadowLinks] = useState<AppRoute[]>([]);
 
   useEffect(() => {
-    const rs: LinkProps[] = [];
+    const rs: AppRoute[] = [];
     let top = 0;
     document.querySelectorAll('#navwrap a').forEach((el, i) => {
       const _top = el.getBoundingClientRect().top;
