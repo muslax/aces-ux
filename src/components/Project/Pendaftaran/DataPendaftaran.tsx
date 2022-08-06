@@ -1,8 +1,8 @@
 import { Text } from '@mantine/core';
-import { FieldPendaftaran } from '../FieldPendaftaranRekrutment';
+// import { FieldProps } from 'lib/recruitmentFields';
 import { useStyles } from './DataPendaftaran.styles';
 
-export function DataPendaftaran({ data }: { data: FieldPendaftaran[] }) {
+export function DataPendaftaran({ data }: { data: any[] }) {
   return (
     <>
       <div
@@ -24,7 +24,7 @@ export function DataPendaftaran({ data }: { data: FieldPendaftaran[] }) {
   );
 }
 
-function FiledsGroup({ title, data }: { title: string; data: FieldPendaftaran[] }) {
+function FiledsGroup({ title, data }: { title: string; data: any[] }) {
   const { classes } = useStyles({});
 
   return (

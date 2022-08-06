@@ -14,3 +14,4 @@ export { Laporan } from './Laporan/Laporan';
 export { TesMandiri } from './TesMandiri/TesMandiri';
 export { TesInteraktif } from './TesInteraktif/TesInteraktif';
 export { Pendaftaran } from './Pendaftaran/Pendaftaran';
+export { EditModules } from './EditModules/EditModules';

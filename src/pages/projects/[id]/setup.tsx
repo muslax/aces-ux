@@ -43,50 +43,6 @@ export default function Project() {
   if (!projectContext) return <></>;
 
   return <Setup context={projectContext} />;
-
-  return (
-    <>
-      <Title order={4} mb={10}>
-        Modul
-      </Title>
-      <div style={{ display: 'flex', alignItems: 'stretch', gap: 20, marginBottom: 10 }}>
-        <Text mb={10} size="sm" style={{ flexGrow: 1 }}>
-          Tolok Ukur dipakai dalam penyusunan laporan, kurang lebih sebagai berikut: If you need
-          multiple layouts, you can add a property getLayout to your page...
-        </Text>
-      </div>
-
-      <Table mb={30}>
-        <thead>
-          <tr>
-            <th>Nama modul</th>
-            <th>Waktu maksimal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>GPQ</td>
-            <td>60 menit</td>
-          </tr>
-          <tr>
-            <td>AIME</td>
-            <td>75 menit</td>
-          </tr>
-        </tbody>
-      </Table>
-
-      {editing && <EditTolokUkur data={selected} onSave={setSelected} setEditing={setEditing} />}
-
-      {!editing && (
-        <TableTolokUkur
-          data={selected}
-          title="Telak Ukur"
-          description="Keterangan"
-          setEditing={setEditing}
-        />
-      )}
-    </>
-  );
 }
 
 Project.getLayout = function getLayout(page: ReactElement) {

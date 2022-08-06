@@ -18,7 +18,7 @@ import { useHookConditionally } from './useHookConditionally';
 import ProjectContext from 'components/ProjectProvider';
 
 type LayoutProps = {
-  type: 'user-layout' | 'project-layout' | 'basic';
+  type: 'user-layout' | 'project-layout' | 'single-form' | 'basic';
   page: string;
   title: string;
   children: ReactNode;
@@ -70,21 +70,35 @@ export default function UserLayout({ type, page, title, children }: LayoutProps)
         <title>{title}</title>
       </Head>
       {/* <WithConditionalHook condition={true}> */}
-      <Header yScroll={scroll.y} />
-      <Mobilenav yScroll={scroll.y} links={routes} />
-      <Hero type={page} title={title} yScroll={scroll.y} />
-      <Container>
-        <div className={classes.pageWrap}>
-          <div className={classes.pageFlex}>
-            <aside className={classes.aside}>
-              <Sidebar links={routes} />
-            </aside>
-            <main className={classes.main}>
-              <>{children}</>
-            </main>
+      {type == 'single-form' && (
+        <>
+          <Header yScroll={1} />
+          <div className={classes.singleForm}>
+            <Container>
+              <div style={{ maxWidth: 640, margin: '0 auto', paddingBottom: 150 }}>{children}</div>
+            </Container>
           </div>
-        </div>
-      </Container>
+        </>
+      )}
+      {type != 'single-form' && (
+        <>
+          <Header yScroll={scroll.y} />
+          <Mobilenav yScroll={scroll.y} links={routes} />
+          <Hero type={page} title={title} yScroll={scroll.y} />
+          <Container>
+            <div className={classes.pageWrap}>
+              <div className={classes.pageFlex}>
+                <aside className={classes.aside}>
+                  <Sidebar links={routes} />
+                </aside>
+                <main className={classes.main}>
+                  <>{children}</>
+                </main>
+              </div>
+            </div>
+          </Container>
+        </>
+      )}
       <Footer />
       {/* </WithConditionalHook> */}
     </>

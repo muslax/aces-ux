@@ -20,6 +20,7 @@ import {
 export type AppRoute = {
   href: string;
   label: string;
+  hidden?: boolean;
   icon?: ReactNode;
 };
 
@@ -105,6 +106,11 @@ const projectRoutes: AppRoute[] = [
     label: 'Laporan',
     icon: <Report size={iconSize} />,
   },
+  {
+    href: '/edit-modules',
+    label: 'Edit Modules',
+    hidden: true,
+  },
 ];
 
 const recruitmentRoutes: AppRoute[] = [
@@ -137,5 +143,10 @@ const recruitmentRoutes: AppRoute[] = [
     href: '/laporan',
     label: 'Laporan',
     icon: <Report size={iconSize} />,
+  },
+  {
+    href: '/edit-modules',
+    label: 'Edit Modules',
+    hidden: true,
   },
 ];

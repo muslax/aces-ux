@@ -8,9 +8,11 @@ export default function Sidebar({ links }: { links: AppRoute[] }) {
   const { classes } = useStyles({});
   return (
     <ul className={classes.wrap}>
-      {links.map((item) => (
-        <SidebarItem key={item.href} link={item} active={item.href == asPath} />
-      ))}
+      {links
+        .filter((item) => !item.hidden)
+        .map((item) => (
+          <SidebarItem key={item.href} link={item} active={item.href == asPath} />
+        ))}
     </ul>
   );
 }

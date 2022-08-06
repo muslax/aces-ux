@@ -1,39 +1,39 @@
-import { Dispatch, useEffect, useState } from 'react';
-import { Checkbox, CSSObject, ScrollArea, Table, Text } from '@mantine/core';
-import { FieldPendaftaran, FieldPendaftaranRekrutmen } from '../FieldPendaftaranRekrutment';
+import { Dispatch, useEffect } from 'react';
+import { Checkbox, CSSObject, ScrollArea, Table } from '@mantine/core';
+// import { FieldProps, recruitmentFields } from 'lib/recruitmentFields';
 import { useStyles } from './DataPendaftaran.styles';
 
 type FormProps = {
-  data: FieldPendaftaran[];
-  selections: FieldPendaftaran[];
-  setSelections: Dispatch<FieldPendaftaran[]>;
+  data: any[];
+  selections: any[];
+  setSelections: Dispatch<any[]>;
 };
 
 export function FormDataPendaftaran(props: FormProps) {
   const { classes } = useStyles({});
   const { data, selections, setSelections } = props;
 
-  useEffect(() => {
-    const array: FieldPendaftaran[] = [];
-    FieldPendaftaranRekrutmen.forEach((template) => {
-      if (template.obligatory) array.push(template);
-      else {
-        const found = data.find((ud) => ud.id == template.id);
-        const item: FieldPendaftaran = {
-          id: template.id,
-          type: template.type,
-          label: template.label,
-          included: found !== undefined,
-          required: found?.required || false,
-        };
-        array.push(item);
-      }
-    });
-    setSelections(array);
-    return () => {};
-  }, []);
+  // useEffect(() => {
+  //   const array: any[] = [];
+  //   recruitmentFields.forEach((template) => {
+  //     if (template.obligatory) array.push(template);
+  //     else {
+  //       const found = data.find((ud) => ud.id == template.id);
+  //       const item: FieldProps = {
+  //         id: template.id,
+  //         type: template.type,
+  //         label: template.label,
+  //         included: found !== undefined,
+  //         required: found?.required || false,
+  //       };
+  //       array.push(item);
+  //     }
+  //   });
+  //   setSelections(array);
+  //   return () => {};
+  // }, []);
 
-  function describe(item: FieldPendaftaran) {
+  function describe(item: any) {
     if (!item.included) {
       return <span style={{ color: '#89a' }}>Tidak dimuat</span>;
     }

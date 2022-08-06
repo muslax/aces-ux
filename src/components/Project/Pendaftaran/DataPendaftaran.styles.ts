@@ -1,7 +1,7 @@
 import { createStyles } from '@mantine/core';
-import { FieldPendaftaran } from '../FieldPendaftaranRekrutment';
+// import { FieldPendaftaran } from '../FieldPendaftaranRekrutment';
 
-export const useStyles = createStyles((theme, { item }: { item?: FieldPendaftaran }, getRef) => ({
+export const useStyles = createStyles((theme, { item }: { item?: any }, getRef) => ({
   table: {
     borderTop: `1px solid ${theme.colors.gray[4]}`,
     [`& thead th.${getRef('th')}`]: {

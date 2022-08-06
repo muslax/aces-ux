@@ -3,9 +3,9 @@ import { Button, Divider, Space, Text } from '@mantine/core';
 import { TanggalPendaftaran } from './TanggalPendaftaran';
 import { DataPendaftaran } from './DataPendaftaran';
 import { FormDataPendaftaran } from './FormDataPendaftaran';
-import { FieldPendaftaran } from '../FieldPendaftaranRekrutment';
+// import { FieldPendaftaran } from '../FieldPendaftaranRekrutment';
 
-const sampleData: FieldPendaftaran[] = [
+const sampleData: any[] = [
   { id: 'FDR01', type: 'input', label: 'Email', obligatory: true },
   { id: 'FDR02', type: 'input', label: 'Nama Lengkap', obligatory: true },
   { id: 'FDR03', type: 'input', label: 'Jenis Kelamin', required: true },
@@ -19,11 +19,11 @@ const sampleData: FieldPendaftaran[] = [
 
 export function Settings() {
   const [editing, setEditing] = useState(false);
-  const [userData, setUserData] = useState<FieldPendaftaran[]>(sampleData);
-  const [selections, setSelections] = useState<FieldPendaftaran[]>([]);
+  const [userData, setUserData] = useState<any[]>(sampleData);
+  const [selections, setSelections] = useState<any[]>([]);
 
   const updateUserData = () => {
-    const rs: FieldPendaftaran[] = [];
+    const rs: any[] = [];
     selections
       .filter((sel) => sel.obligatory)
       .forEach((sel) => {

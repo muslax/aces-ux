@@ -1,6 +1,14 @@
 import { createStyles } from '@mantine/core';
 export const useStyles = createStyles((theme) => ({
   fullWidth: {},
+  singleForm: {
+    backgroundColor: theme.colors.gray[0],
+    minHeight: '100vh',
+    paddingTop: 30,
+    '@media (min-width: 768px)': {
+      paddingTop: 100,
+    },
+  },
 
   container: {
     maxWidth: 1024,

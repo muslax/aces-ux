@@ -34,9 +34,11 @@ export default function Mobilenav({ links, yScroll }: { links: AppRoute[]; yScro
       <div ref={ref}>
         <div className={classes.wrap}>
           <div id="navwrap" className={classes.flex}>
-            {links.map((link) => (
-              <LinkItem key={link.href} link={link} />
-            ))}
+            {links
+              .filter((item) => !item.hidden)
+              .map((link) => (
+                <LinkItem key={link.href} link={link} />
+              ))}
           </div>
           {/* <div className={classes.menuwrap}> */}
           <div
