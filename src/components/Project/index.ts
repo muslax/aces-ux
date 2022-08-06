@@ -1,8 +1,16 @@
 export { Settings } from './Pendaftaran/Settings';
-export { Monitoring } from './Pendaftaran/Monitoring';
+// export { Monitoring } from './Pendaftaran/Monitoring';
 export { DataPendaftaran } from './Pendaftaran/DataPendaftaran';
 export { FormDataPendaftaran } from './Pendaftaran/FormDataPendaftaran';
 export { TanggalPendaftaran } from './Pendaftaran/TanggalPendaftaran';
 export { Overview } from './Overview/Overview';
 export { TableTolokUkur } from './TolokUkur/TableTolokUkur';
 export { EditTolokUkur } from './TolokUkur/EditTolokUkur';
+export { Setup } from './Setup/Setup';
+export { Deployment } from './Deployment/Deployment';
+export { Peserta } from './Peserta/Peserta';
+export { Monitoring } from './/Monitoring/Monitoring';
+export { Laporan } from './Laporan/Laporan';
+export { TesMandiri } from './TesMandiri/TesMandiri';
+export { TesInteraktif } from './TesInteraktif/TesInteraktif';
+export { Pendaftaran } from './Pendaftaran/Pendaftaran';

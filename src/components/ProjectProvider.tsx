@@ -1,7 +1,7 @@
 import { ProjectInfo } from 'lib/queries/getProject';
 import { createContext, Dispatch, ReactNode, useState } from 'react';
 
-interface ProjectContextProps {
+export interface ProjectContextProps {
   projectContext: ProjectInfo | undefined;
   setProjectContext: Dispatch<ProjectInfo>;
 }

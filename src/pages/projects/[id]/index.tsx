@@ -10,9 +10,11 @@ export default function Project() {
 
   // Prevent flickering (rendering content) when accessed by unlogged user
   if (!user || !user.isLoggedIn) return <></>;
+  if (!projectContext) return <></>;
+
   return (
     <>
-      <Overview />
+      <Overview context={projectContext} />
     </>
   );
 }

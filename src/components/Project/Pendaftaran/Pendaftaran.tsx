@@ -1,14 +1,12 @@
 import { Tabs } from '@mantine/core';
-import ProjectContext from 'components/ProjectProvider';
 import PTabs from 'components/Tabs/PTabs';
 import { randomNames } from 'lib/names/names';
-import { useContext } from 'react';
+import { ProjectInfo } from 'lib/queries/getProject';
 import { Monitoring } from './Monitoring';
 import { Screening } from './Screening';
 import { Settings } from './Settings';
 
-export function Pendaftaran() {
-  const { projectContext } = useContext(ProjectContext);
+export function Pendaftaran({ context }: { context: ProjectInfo }) {
   const names = randomNames(200);
 
   return (

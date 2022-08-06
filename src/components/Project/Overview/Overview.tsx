@@ -2,9 +2,10 @@ import { Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import FormFrame, { InputDef } from 'components/Frame/FormFrame';
 import Notice from 'components/Notice/Notice';
+import { ProjectInfo } from 'lib/queries/getProject';
 import { useState } from 'react';
 
-export function Overview() {
+export function Overview({ context }: { context: ProjectInfo }) {
   const sampleForm = useForm({
     initialValues: {
       id: 'abcde',

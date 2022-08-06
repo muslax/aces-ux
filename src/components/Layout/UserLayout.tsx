@@ -1,4 +1,5 @@
 import { ReactNode, useContext, useEffect, useState } from 'react';
+import Head from 'next/head';
 import { Center } from '@mantine/core';
 import { useWindowScroll } from '@mantine/hooks';
 import Footer from 'components/Footer/Footer';
@@ -65,6 +66,9 @@ export default function UserLayout({ type, page, title, children }: LayoutProps)
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       {/* <WithConditionalHook condition={true}> */}
       <Header yScroll={scroll.y} />
       <Mobilenav yScroll={scroll.y} links={routes} />

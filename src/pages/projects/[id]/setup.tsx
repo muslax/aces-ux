@@ -5,7 +5,7 @@ import useUser from 'lib/useUser';
 import ProjectContext from 'components/ProjectProvider';
 import Pojo from 'components/Pojo';
 import { EditTolokUkur } from 'components/Project/TolokUkur/EditTolokUkur';
-import { TableTolokUkur } from 'components/Project';
+import { Setup, TableTolokUkur } from 'components/Project';
 import UserLayout from 'components/Layout/UserLayout';
 
 // type TolokUkur = {
@@ -40,6 +40,9 @@ export default function Project() {
 
   // Prevent flickering (rendering content) when accessed by unlogged user
   if (!user || !user.isLoggedIn) return <></>;
+  if (!projectContext) return <></>;
+
+  return <Setup context={projectContext} />;
 
   return (
     <>
