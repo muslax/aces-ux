@@ -1,7 +1,7 @@
 import { ReactElement, useContext } from 'react';
 import useUser from 'lib/useUser';
 import ProjectContext from 'components/ProjectProvider';
-import { Setup } from 'components/Project';
+import { EditModules, EditNorms } from 'components/Project';
 import UserLayout from 'components/Layout/UserLayout';
 
 export default function Project() {
@@ -12,12 +12,12 @@ export default function Project() {
   if (!user || !user.isLoggedIn) return <></>;
   if (!projectContext) return <></>;
 
-  return <Setup context={projectContext} />;
+  return <EditNorms context={projectContext} />;
 }
 
 Project.getLayout = function getLayout(page: ReactElement) {
   return (
-    <UserLayout type="project-layout" page="setup" title="Project Setup">
+    <UserLayout type="single-form" page="edit-norms" title="Edit Modules">
       {page}
     </UserLayout>
   );

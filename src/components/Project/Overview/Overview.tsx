@@ -37,7 +37,7 @@ export function Overview({ context }: { context: ProjectInfo }) {
           desired.
         </Text>
       </Notice>
-      <Notice mb={0} color="green" closeable>
+      {/* <Notice mb={0} color="green" closeable>
         <Text size="md">
           <strong>State-based Notice.</strong>
           {` `}
@@ -63,7 +63,7 @@ export function Overview({ context }: { context: ProjectInfo }) {
         If you need multiple layouts, you can add a property getLayout to your page, allowing you to
         return a React component for the layout. This allows you to define the layout on a per-page
         basis. Since we're returning a function, we can have complex nested layouts if desired.
-      </Text>
+      </Text> */}
       <FormFrame
         mt={20}
         title="Project Info (fixed)"

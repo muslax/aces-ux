@@ -111,6 +111,11 @@ const projectRoutes: AppRoute[] = [
     label: 'Edit Modules',
     hidden: true,
   },
+  {
+    href: '/edit-norms',
+    label: 'Edit Norms',
+    hidden: true,
+  },
 ];
 
 const recruitmentRoutes: AppRoute[] = [
@@ -147,6 +152,11 @@ const recruitmentRoutes: AppRoute[] = [
   {
     href: '/edit-modules',
     label: 'Edit Modules',
+    hidden: true,
+  },
+  {
+    href: '/edit-norms',
+    label: 'Edit Norms',
     hidden: true,
   },
 ];

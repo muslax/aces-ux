@@ -15,3 +15,4 @@ export { TesMandiri } from './TesMandiri/TesMandiri';
 export { TesInteraktif } from './TesInteraktif/TesInteraktif';
 export { Pendaftaran } from './Pendaftaran/Pendaftaran';
 export { EditModules } from './EditModules/EditModules';
+export { EditNorms } from './EditNorms/EditNorms';
