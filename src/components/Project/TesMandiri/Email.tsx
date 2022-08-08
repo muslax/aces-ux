@@ -3,6 +3,7 @@ import Frame from 'components/Frame/Frame';
 import SectionTitle from 'components/SectionTitle';
 import { randomNames } from 'lib/names/names';
 import { ProjectInfo } from 'lib/queries/getProject';
+import Link from 'next/link';
 
 export default function Email({ context }: { context: ProjectInfo }) {
   const names = randomNames(100);
@@ -25,7 +26,9 @@ export default function Email({ context }: { context: ProjectInfo }) {
         <br />
         <br />
         <br />
-        <br />
+        <Link href={`/projects/${context.id}/email-tes-mandiri`}>
+          <a>Preview/Edit Email</a>
+        </Link>
       </Frame>
       <SectionTitle size={15} mb={10} title="Status Pengiriman Email" />
       <Text mb={20}>Hanya menampilkan status pelaksanaan, tidak ada action.</Text>
