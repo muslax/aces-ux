@@ -33,6 +33,19 @@ export function Monitoring({ names }: { names: string[] }) {
         </Text>
       </Notice>
       <Show when={step === 2}>
+        <Notice
+          color="gray"
+          closeable
+          isOpen={step === 1}
+          onClose={() => {
+            setStep(0);
+            setTimeout(() => setStep(step + 1), 80);
+          }}
+        >
+          Pendaftaran sudah ditutup dengan total jumlah pendaftar 4711.
+        </Notice>
+      </Show>
+      <Show when={step === 3}>
         {/* Stats */}
         <div
           style={{
@@ -67,13 +80,13 @@ export function Monitoring({ names }: { names: string[] }) {
               alignItems: 'center',
               padding: '15px 20px',
               backgroundColor: colors.gray[1],
-              backgroundImage: theme.fn.linearGradient(
-                133,
-                theme.colors.indigo[1],
-                theme.colors.indigo[0],
-                theme.colors.pink[0],
-                'white'
-              ),
+              // backgroundImage: theme.fn.linearGradient(
+              //   133,
+              //   theme.colors.indigo[1],
+              //   theme.colors.indigo[0],
+              //   theme.colors.pink[0],
+              //   'white'
+              // ),
             }}
           >
             <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase' }}>
@@ -108,58 +121,3 @@ export function Monitoring({ names }: { names: string[] }) {
     </>
   );
 }
-
-/*
-<div
-            style={{
-              display: 'flex',
-              gap: 6,
-              flexFlow: 'column',
-              textTransform: 'uppercase',
-              lineHeight: 1,
-              fontSize: 15,
-              fontWeight: 600,
-            }}
-          >
-            <div style={{ marginLeft: 6, display: 'flex' }}>
-              <div
-                style={{
-                  padding: 7,
-                  fontSize: 14,
-                  backgroundColor: colors.gray[3],
-                  transform: 'rotate(-7deg)',
-                }}
-              >
-                Total
-              </div>
-            </div>
-            <div style={{ marginLeft: 5, display: 'flex' }}>
-              <div
-                style={{
-                  padding: 7,
-                  fontSize: 13,
-                  marginTop: -6,
-                  marginBottom: -6,
-                  color: 'white',
-                  // border: '2px solid white',
-                  boxShadow: '-2px -2px 0 white',
-                  backgroundColor: colors.gray[8],
-                  transform: 'rotate(1deg)',
-                }}
-              >
-                Jumlah
-              </div>
-            </div>
-            <div
-              style={{
-                padding: 8,
-                marginLeft: -20,
-                backgroundColor: 'rgba(250,230,0,.6)',
-                border: '2px solid white',
-                transform: 'rotate(10deg)',
-              }}
-            >
-              Pendaftar
-            </div>
-          </div>
-*/
