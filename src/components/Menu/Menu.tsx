@@ -159,4 +159,9 @@ const recruitmentRoutes: AppRoute[] = [
     label: 'Edit Norms',
     hidden: true,
   },
+  {
+    href: '/edit-data-pendaftaran',
+    label: 'Edit Data Pendaftaran',
+    hidden: true,
+  },
 ];

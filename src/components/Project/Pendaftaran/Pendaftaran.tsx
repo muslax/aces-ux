@@ -17,7 +17,7 @@ export function Pendaftaran({ context }: { context: ProjectInfo }) {
         <Tabs.Tab value="Screening">Screening</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel value="Settings">
-        <Settings />
+        <Settings context={context} />
       </Tabs.Panel>
       <Tabs.Panel value="Monitoring">
         <Monitoring names={names} />

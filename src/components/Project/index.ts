@@ -1,7 +1,6 @@
 export { Settings } from './Pendaftaran/Settings';
 // export { Monitoring } from './Pendaftaran/Monitoring';
 export { DataPendaftaran } from './Pendaftaran/DataPendaftaran';
-export { FormDataPendaftaran } from './Pendaftaran/FormDataPendaftaran';
 export { TanggalPendaftaran } from './Pendaftaran/TanggalPendaftaran';
 export { Overview } from './Overview/Overview';
 export { TableTolokUkur } from './TolokUkur/TableTolokUkur';
@@ -16,3 +15,4 @@ export { TesInteraktif } from './TesInteraktif/TesInteraktif';
 export { Pendaftaran } from './Pendaftaran/Pendaftaran';
 export { EditModules } from './EditModules/EditModules';
 export { EditNorms } from './EditNorms/EditNorms';
+export { EditDataPendaftaran } from './EditDataPendaftaran/EditDataPendaftaran';

@@ -6,6 +6,7 @@ type SectionTitleProps = {
   description?: string;
   mt?: number;
   mb?: number;
+  size?: number;
   rightSection?: ReactNode;
 };
 
@@ -14,7 +15,7 @@ export default function SectionTitle(props: SectionTitleProps) {
     <div style={{ marginTop: props.mt || 0, marginBottom: props.mb || 0 }}>
       <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
         <div style={{ flexGrow: 1 }}>
-          <Title order={4}>{props.title}</Title>
+          <Title sx={{ fontSize: props.size || 18 }}>{props.title}</Title>
           {props.description && <Text>{props.description}</Text>}
         </div>
         <div>{props.rightSection && props.rightSection}</div>

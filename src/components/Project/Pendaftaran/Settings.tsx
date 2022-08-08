@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { Button, Divider, Space, Text } from '@mantine/core';
+import { Space } from '@mantine/core';
 import { TanggalPendaftaran } from './TanggalPendaftaran';
 import { DataPendaftaran } from './DataPendaftaran';
-import { FormDataPendaftaran } from './FormDataPendaftaran';
-// import { FieldPendaftaran } from '../FieldPendaftaranRekrutment';
+import { ProjectInfo } from 'lib/queries/getProject';
 
 const sampleData: any[] = [
   { id: 'FDR01', type: 'input', label: 'Email', obligatory: true },
@@ -17,7 +16,7 @@ const sampleData: any[] = [
   { id: 'FDR09', type: 'input', label: 'Kewarganegaraan', required: true },
 ];
 
-export function Settings() {
+export function Settings({ context }: { context: ProjectInfo }) {
   const [editing, setEditing] = useState(false);
   const [userData, setUserData] = useState<any[]>(sampleData);
   const [selections, setSelections] = useState<any[]>([]);
@@ -41,47 +40,7 @@ export function Settings() {
     <>
       <TanggalPendaftaran />
       <Space h={30} />
-      <Text size="lg" weight={600} mb={10}>
-        Jenis Data dan Lampiran Pendaftaran
-      </Text>
-      <Text size="sm" mb={20}>
-        If you need multiple layouts, you can add a property getLayout to your page, allowing you to
-        return a React component for the layout.
-      </Text>
-      {editing && (
-        <FormDataPendaftaran
-          data={userData}
-          selections={selections}
-          setSelections={setSelections}
-        />
-      )}
-      {!editing && <DataPendaftaran data={userData} />}
-      <Divider my={16} />
-      <Button
-        size="xs"
-        color="dark"
-        onClick={() => {
-          if (editing) {
-            updateUserData();
-          }
-          setEditing(!editing);
-        }}
-      >
-        {editing ? 'Save' : 'Edit'}
-      </Button>
-      {editing && (
-        <Button
-          size="xs"
-          color="red"
-          ml={20}
-          variant="outline"
-          onClick={() => {
-            setEditing(!editing);
-          }}
-        >
-          Cancel
-        </Button>
-      )}
+      <DataPendaftaran context={context} data={userData} />
     </>
   );
 }

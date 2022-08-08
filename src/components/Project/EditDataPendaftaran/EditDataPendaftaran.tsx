@@ -1,37 +1,45 @@
-import { Dispatch, useEffect } from 'react';
-import { Checkbox, CSSObject, ScrollArea, Table } from '@mantine/core';
-// import { FieldProps, recruitmentFields } from 'lib/recruitmentFields';
-import { useStyles } from './DataPendaftaran.styles';
+import {
+  Box,
+  Button,
+  Checkbox,
+  CSSObject,
+  Divider,
+  ScrollArea,
+  Table,
+  Text,
+  Title,
+} from '@mantine/core';
+import Pojo from 'components/Pojo';
+import { ProjectInfo } from 'lib/queries/getProject';
+import { RecruitmentField, recruitmentFields } from 'lib/recruitmentFields';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useStyles } from './EditDataPendaftaran.styles';
 
-type FormProps = {
-  data: any[];
-  selections: any[];
-  setSelections: Dispatch<any[]>;
-};
-
-export function FormDataPendaftaran(props: FormProps) {
+export function EditDataPendaftaran({ context }: { context: ProjectInfo }) {
   const { classes } = useStyles({});
-  const { data, selections, setSelections } = props;
+  const [userData, setUserData] = useState<any[]>([]);
+  const [selections, setSelections] = useState<any[]>([]);
 
-  // useEffect(() => {
-  //   const array: any[] = [];
-  //   recruitmentFields.forEach((template) => {
-  //     if (template.obligatory) array.push(template);
-  //     else {
-  //       const found = data.find((ud) => ud.id == template.id);
-  //       const item: FieldProps = {
-  //         id: template.id,
-  //         type: template.type,
-  //         label: template.label,
-  //         included: found !== undefined,
-  //         required: found?.required || false,
-  //       };
-  //       array.push(item);
-  //     }
-  //   });
-  //   setSelections(array);
-  //   return () => {};
-  // }, []);
+  useEffect(() => {
+    const array: any[] = [];
+    recruitmentFields.forEach((template) => {
+      if (template.obligatory) array.push(template);
+      else {
+        const found = userData.find((ud) => ud.id == template.id);
+        const item: RecruitmentField = {
+          id: template.id,
+          type: template.type,
+          label: template.label,
+          included: found !== undefined,
+          required: found?.required || false,
+        };
+        array.push(item);
+      }
+    });
+    setSelections(array);
+    return () => {};
+  }, []);
 
   function describe(item: any) {
     if (!item.included) {
@@ -132,6 +140,12 @@ export function FormDataPendaftaran(props: FormProps) {
 
   return (
     <>
+      <Title order={2}>Edit Project Modules</Title>
+      <Text>Judul Proyek: {context.title}</Text>
+      <Text mb={20}>Tipe Proyek: {context.type}</Text>
+      {/* <Pojo object={JSON.stringify(selected)} /> */}
+      {/* <Divider mt={10} mb={20} /> */}
+      {/* <Pojo object={recruitmentFields} /> */}
       <ScrollArea>
         <Table className={classes.table} verticalSpacing="xs">
           <thead>
@@ -143,7 +157,7 @@ export function FormDataPendaftaran(props: FormProps) {
               <th className={classes.th} style={{ width: 100 }}>
                 Option
               </th>
-              <th className={classes.th} style={{ textAlign: 'right' }}>
+              <th className={classes.th} style={{ textAlign: 'right', width: 130 }}>
                 Keterangan
               </th>
             </tr>
@@ -151,6 +165,27 @@ export function FormDataPendaftaran(props: FormProps) {
           <tbody>{rows}</tbody>
         </Table>
       </ScrollArea>
+      <Box mt={20}>
+        <Button color="dark" mr={15} px={32}>
+          Save
+        </Button>
+        <Link href={`/projects/${context.id}/pendaftaran`} passHref>
+          <Button
+            component="a"
+            variant="outline"
+            color="gray"
+            sx={{
+              ':hover': {
+                color: 'red',
+                borderColor: 'red',
+                backgroundColor: 'white',
+              },
+            }}
+          >
+            Cancel
+          </Button>
+        </Link>
+      </Box>
     </>
   );
 }

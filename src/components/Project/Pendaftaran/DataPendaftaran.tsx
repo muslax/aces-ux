@@ -1,10 +1,19 @@
-import { Text } from '@mantine/core';
-// import { FieldProps } from 'lib/recruitmentFields';
+import { Button, Divider, Text } from '@mantine/core';
+import SectionTitle from 'components/SectionTitle';
+import { ProjectInfo } from 'lib/queries/getProject';
+import Link from 'next/link';
 import { useStyles } from './DataPendaftaran.styles';
 
-export function DataPendaftaran({ data }: { data: any[] }) {
+export function DataPendaftaran({ context, data }: { context: ProjectInfo; data: any[] }) {
   return (
     <>
+      <SectionTitle
+        size={15}
+        mb={20}
+        title="Jenis Data dan Lampiran Pendaftaran"
+        description="If you need multiple layouts, you can add a property getLayout to your page, allowing you to
+        return a React component for the layout."
+      />
       <div
         style={{
           display: 'flex',
@@ -20,6 +29,12 @@ export function DataPendaftaran({ data }: { data: any[] }) {
         />
         <FiledsGroup title="Attachment" data={data.filter((d) => d.type == 'attachment')} />
       </div>
+      <Divider my={16} />
+      <Link href={`/projects/${context.id}/edit-data-pendaftaran`} passHref>
+        <Button component="a" size="xs" color="dark">
+          Edit
+        </Button>
+      </Link>
     </>
   );
 }
