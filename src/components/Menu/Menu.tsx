@@ -135,13 +135,13 @@ const recruitmentRoutes: AppRoute[] = [
     icon: <Speakerphone size={iconSize} />,
   },
   {
-    href: '/seleksi',
-    label: 'Seleksi',
+    href: '/tes-mandiri',
+    label: 'Tes Mandiri',
     icon: <Select size={iconSize} />,
   },
   {
-    href: '/wawancara',
-    label: 'Wawancara',
+    href: '/interaktif',
+    label: 'Simulasi Interaktif',
     icon: <Messages size={iconSize} />,
   },
   {

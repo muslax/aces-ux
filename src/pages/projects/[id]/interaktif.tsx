@@ -1,8 +1,6 @@
 import { ReactElement, useContext } from 'react';
-import { Text } from '@mantine/core';
 import useUser from 'lib/useUser';
 import ProjectContext from 'components/ProjectProvider';
-import Pojo from 'components/Pojo';
 import UserLayout from 'components/Layout/UserLayout';
 import { TesInteraktif } from 'components/Project';
 
@@ -19,7 +17,7 @@ export default function Project() {
 
 Project.getLayout = function getLayout(page: ReactElement) {
   return (
-    <UserLayout type="project-layout" page="wawancara" title="Wawancara">
+    <UserLayout type="project-layout" page="wawancara" title="Simulasi Interaktif">
       {page}
     </UserLayout>
   );
