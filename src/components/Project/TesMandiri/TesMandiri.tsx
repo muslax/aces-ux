@@ -1,6 +1,7 @@
 import { Tabs, Title } from '@mantine/core';
 import PTabs from 'components/Tabs/PTabs';
 import { ProjectInfo } from 'lib/queries/getProject';
+import Email from './Email';
 import Monitoring from './Monitoring';
 import Screening from './Screening';
 import { Tanggal } from './Tanggal';
@@ -17,7 +18,9 @@ export function TesMandiri({ context }: { context: ProjectInfo }) {
       <Tabs.Panel value="Settings">
         <Tanggal />
       </Tabs.Panel>
-      <Tabs.Panel value="Email">Email</Tabs.Panel>
+      <Tabs.Panel value="Email">
+        <Email context={context} />
+      </Tabs.Panel>
       <Tabs.Panel value="Monitoring">
         <Monitoring context={context} />
       </Tabs.Panel>
