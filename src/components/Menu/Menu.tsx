@@ -121,6 +121,11 @@ const projectRoutes: AppRoute[] = [
     label: 'Email Tes Mandiri',
     hidden: true,
   },
+  {
+    href: '/hasil-tes-mandiri',
+    label: 'Hasil Tes Mandiri',
+    hidden: true,
+  },
 ];
 
 const recruitmentRoutes: AppRoute[] = [
@@ -169,10 +174,14 @@ const recruitmentRoutes: AppRoute[] = [
     label: 'Edit Data Pendaftaran',
     hidden: true,
   },
-  // email-tes-mandiri
   {
     href: '/email-tes-mandiri',
     label: 'Email Tes Mandiri',
+    hidden: true,
+  },
+  {
+    href: '/hasil-tes-mandiri',
+    label: 'Hasil Tes Mandiri',
     hidden: true,
   },
 ];

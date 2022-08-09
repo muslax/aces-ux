@@ -18,7 +18,7 @@ import { useHookConditionally } from './useHookConditionally';
 import ProjectContext from 'components/ProjectProvider';
 
 type LayoutProps = {
-  type: 'user-layout' | 'project-layout' | 'single-form' | 'basic';
+  type: 'user-layout' | 'project-layout' | 'single-form' | 'basic' | 'fixed';
   page: string;
   title: string;
   children: ReactNode;
@@ -70,6 +70,22 @@ export default function UserLayout({ type, page, title, children }: LayoutProps)
         <title>{title}</title>
       </Head>
       {/* <WithConditionalHook condition={true}> */}
+      {type == 'basic' && (
+        <>
+          <Header yScroll={1} />
+          <div className={classes.singleForm} style={{ paddingBottom: 0 }}>
+            <Container>{children}</Container>
+          </div>
+        </>
+      )}
+      {type == 'fixed' && (
+        <>
+          <Header yScroll={1} />
+          <div style={{ paddingTop: 70, backgroundColor: '#f0f3f6', height: 'calc(100vh)' }}>
+            {children}
+          </div>
+        </>
+      )}
       {type == 'single-form' && (
         <>
           <Header yScroll={1} />
@@ -78,9 +94,10 @@ export default function UserLayout({ type, page, title, children }: LayoutProps)
               <div style={{ maxWidth: 640, margin: '0 auto', paddingBottom: 150 }}>{children}</div>
             </Container>
           </div>
+          <Footer />
         </>
       )}
-      {type != 'single-form' && (
+      {(type == 'project-layout' || type == 'user-layout') && (
         <>
           <Header yScroll={scroll.y} />
           <Mobilenav yScroll={scroll.y} links={routes} />
@@ -97,9 +114,10 @@ export default function UserLayout({ type, page, title, children }: LayoutProps)
               </div>
             </div>
           </Container>
+          <Footer />
         </>
       )}
-      <Footer />
+      {/* <Footer /> */}
       {/* </WithConditionalHook> */}
     </>
   );

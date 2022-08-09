@@ -1,10 +1,8 @@
 import { ReactElement, useContext } from 'react';
-import { Text } from '@mantine/core';
 import useUser from 'lib/useUser';
 import ProjectContext from 'components/ProjectProvider';
-import Pojo from 'components/Pojo';
 import UserLayout from 'components/Layout/UserLayout';
-import { TesMandiri } from 'components/Project';
+import { HasilTesMandiri } from 'components/Project/TesMandiri/HasilTesMandiri';
 
 export default function Project() {
   const { user } = useUser({ redirectTo: '/login' });
@@ -14,12 +12,12 @@ export default function Project() {
   if (!user || !user.isLoggedIn) return <></>;
   if (!projectContext) return <></>;
 
-  return <TesMandiri context={projectContext} />;
+  return <HasilTesMandiri context={projectContext} />;
 }
 
 Project.getLayout = function getLayout(page: ReactElement) {
   return (
-    <UserLayout type="project-layout" page="hasil-tes-mandiri" title="Tes Mandiri">
+    <UserLayout type="fixed" page="hasil-tes-mandiri" title="Tes Mandiri">
       {page}
     </UserLayout>
   );
