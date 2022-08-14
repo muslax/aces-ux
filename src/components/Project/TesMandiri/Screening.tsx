@@ -1,80 +1,26 @@
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Checkbox,
-  Paper,
-  ScrollArea,
-  Table,
-  Text,
-  useMantineTheme,
-} from '@mantine/core';
-import { useListState, randomId } from '@mantine/hooks';
-import { IconArrowsSort } from '@tabler/icons';
-import Frame from 'components/Frame/Frame';
+import { ActionIcon, Checkbox, ScrollArea, Table, Text, useMantineTheme } from '@mantine/core';
+import { randomId } from '@mantine/hooks';
+import { IconEye, IconEyeOff, IconArrowsSort } from '@tabler/icons';
 import Pojo from 'components/Pojo';
 import SectionTitle from 'components/SectionTitle';
 import { randomNames } from 'lib/names/names';
 import { ProjectInfo } from 'lib/queries/getProject';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ChevronDown } from 'tabler-icons-react';
-
-const sampleRekomendasi = ['Kurang Disarankan', 'Disarankan', 'Sangat Disarankan'];
-type Sample = {
-  name: string;
-  rekomendasi: string;
-  value: number;
-  checked: boolean;
-  key: string;
-  index: number;
-};
-
-function generateDaftar() {
-  const rs: Sample[] = [];
-  let index = 0;
-  randomNames(100).forEach((name) => {
-    const n = [0, 1, 2].sort(() => Math.random() - 0.5)[0];
-    rs.push({
-      name,
-      rekomendasi: sampleRekomendasi[n],
-      value: n,
-      checked: false,
-      key: randomId(),
-      index: index,
-    });
-    index++;
-  });
-  return rs;
-}
+import { Person, randomFeed } from './random-feed';
 
 export default function Screening({ context }: { context: ProjectInfo }) {
   const theme = useMantineTheme();
-  const names = randomNames(100);
+  const [daftar, setDaftar] = useState<Person[]>(randomFeed(200));
   const [sorter, setSorter] = useState('');
   const [sort, setSort] = useState('asc');
 
-  const allPersons = generateDaftar();
-  const [daftar, setDaftar] = useState<Sample[]>(allPersons);
-  const sdLength = daftar.filter((item) => item.value == 2).length;
-  const dsLength = daftar.filter((item) => item.value == 1).length;
-  const kdLength = daftar.filter((item) => item.value == 0).length;
-
-  const initialSDValues = daftar.filter((item) => item.value == 2);
-  const initialDSValues = daftar.filter((item) => item.value == 1);
-  const initialKDValues = daftar.filter((item) => item.value == 0);
-
-  const [sdValues, sdHandlers] = useListState(initialSDValues);
-  const sdAllChecked = sdValues.every((item) => item.checked);
-  const sdIndeterminate = sdValues.some((item) => item.checked) && !sdAllChecked;
-
-  const sdi = (n: number) => {
-    const x = daftar.filter((item) => item.value == n);
-    return x.some((item) => item.checked) && !sdAll(n);
+  const sdi = (start: number, end: number) => {
+    const x = daftar.filter((item: Person) => item.vx >= start && item.vx < end);
+    return x.some((item) => item.checked) && !sdAll(start, end);
   };
 
-  const sdAll = (n: number) => {
-    const x = daftar.filter((item) => item.value == n);
+  const sdAll = (start: number, end: number) => {
+    const x = daftar.filter((item: Person) => item.vx >= start && item.vx < end);
     return x.every((item) => item.checked);
   };
 
@@ -101,13 +47,15 @@ export default function Screening({ context }: { context: ProjectInfo }) {
     }
   };
 
-  const sortByHasil = () => {
-    setSorter('hasil');
+  const sortBy = (sorter: string) => {
+    setSorter(sorter);
     if (sort == 'asc') {
       setDaftar(
         daftar.sort((a, b) => {
-          if (a.value > b.value) return 1;
-          if (a.value < b.value) return -1;
+          // @ts-ignore
+          if (a[sorter] > b[sorter]) return 1;
+          // @ts-ignore
+          if (a[sorter] < b[sorter]) return -1;
           return 0;
         })
       );
@@ -115,8 +63,10 @@ export default function Screening({ context }: { context: ProjectInfo }) {
     } else {
       setDaftar(
         daftar.sort((a, b) => {
-          if (a.value < b.value) return 1;
-          if (a.value > b.value) return -1;
+          // @ts-ignore
+          if (a[sorter] < b[sorter]) return 1;
+          // @ts-ignore
+          if (a[sorter] > b[sorter]) return -1;
           return 0;
         })
       );
@@ -124,14 +74,15 @@ export default function Screening({ context }: { context: ProjectInfo }) {
     }
   };
 
-  const rows = daftar.map((person: Sample, index: number) => {
+  const rows = daftar.map((person: Person, index: number) => {
+    if (person.hidden) return <></>;
     return (
-      <tr key={person.key}>
+      <tr key={person.key} style={{ display: person.hidden ? 'table-row' : 'table-row' }}>
         <td>{index + 1}</td>
         <td>
           <Checkbox
             color="green"
-            label={person.name}
+            label={`${person.name}`}
             key={person.key}
             checked={person.checked}
             onChange={(event) => {
@@ -141,48 +92,78 @@ export default function Screening({ context }: { context: ProjectInfo }) {
             }}
           />
         </td>
+        <td>{person.va}</td>
+        <td>{person.vb}</td>
+        <td>{person.vc}</td>
+        <td>{person.vd}</td>
         <td
           style={{
             color:
-              person.value == 2
-                ? theme.colors.green[8]
-                : person.value == 0
-                ? theme.colors.orange[6]
-                : theme.colors.green[7],
+              person.vx >= 3.5
+                ? theme.colors.indigo[8]
+                : person.vx >= 3 && person.vx < 3.5
+                ? theme.colors.green[7]
+                : theme.colors.orange[7],
           }}
         >
-          {person.rekomendasi}
+          {person.vx}
         </td>
       </tr>
     );
   });
 
-  const cb = (n: number) => (
+  const toggle = (start: number, end: number) => {
+    const array = [...daftar];
+    array.forEach((item) => {
+      if (item.vx >= start && item.vx < end) item.hidden = !item.hidden;
+    });
+    setDaftar(array);
+  };
+
+  const cb = (start: number, end: number) => (
     <Checkbox
       color="dark"
-      checked={sdAll(n)}
-      indeterminate={sdi(n)}
+      checked={sdAll(start, end)}
+      indeterminate={sdi(start, end)}
       transitionDuration={0}
       onChange={(event) => {
         const array = [...daftar];
         array.forEach((item) => {
-          if (item.value == n) item.checked = event.currentTarget.checked;
+          if (item.vx >= start && item.vx < end) item.checked = event.currentTarget.checked;
         });
         setDaftar(array);
       }}
     />
   );
 
-  const tr = (label: string, n: number) => (
-    <tr>
-      <td>{label}</td>
-      <td style={{ width: 40 }}>{daftar.filter((item) => item.value == n).length}</td>
-      <td style={{ width: 40 }}>{cb(n)}</td>
-      <td style={{ width: 40 }}>
-        {daftar.filter((item) => item.value == n && item.checked).length}
-      </td>
-    </tr>
-  );
+  const tr = (label: string, start: number, end: number) => {
+    const [hidden, setHidden] = useState(false);
+    return (
+      <tr>
+        <td style={{}}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginLeft: -8 }}>
+            <ActionIcon
+              onClick={() => {
+                setHidden(!hidden);
+                toggle(start, end);
+              }}
+              size={16}
+            >
+              <IconEye size={16} color={hidden ? '#bbb' : '#000'} />
+            </ActionIcon>
+            <span>{label}</span>
+          </div>
+        </td>
+        <td style={{ width: 40 }}>
+          {daftar.filter((item) => item.vx >= start && item.vx < end).length}
+        </td>
+        <td style={{ width: 40 }}>{cb(start, end)}</td>
+        <td style={{ width: 40 }}>
+          {daftar.filter((item) => item.vx >= start && item.vx < end && item.checked).length}
+        </td>
+      </tr>
+    );
+  };
 
   return (
     <>
@@ -213,9 +194,9 @@ export default function Screening({ context }: { context: ProjectInfo }) {
         <div style={{ flexGrow: 1 }}>
           <Table verticalSpacing="xs">
             <tbody>
-              {tr('Sangat Disarankan', 2)}
-              {tr('Disarankan', 1)}
-              {tr('Kurang Disarankan', 0)}
+              {tr('Sangat Disarankan', 3.5, 6)}
+              {tr('Disarankan', 3, 3.5)}
+              {tr('Kurang Disarankan', 0, 3)}
             </tbody>
           </Table>
         </div>
@@ -238,20 +219,22 @@ export default function Screening({ context }: { context: ProjectInfo }) {
             <tr>
               <th style={{ width: 24 }}>#</th>
               <th>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                  <span>Nama Peserta</span>
-                  <ActionIcon onClick={() => sortByName()}>
-                    <IconArrowsSort size={14} color={sorter == 'name' ? '#000' : '#bbb'} />
-                  </ActionIcon>
-                </div>
+                <CLabel label="Nama" sort="name" sorter={sorter} clickHandler={sortByName} />
               </th>
               <th>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                  <span>Rekomensasi</span>
-                  <ActionIcon onClick={() => sortByHasil()}>
-                    <IconArrowsSort size={14} color={sorter == 'hasil' ? '#000' : '#bbb'} />
-                  </ActionIcon>
-                </div>
+                <CLabel label="V1" sort="va" sorter={sorter} clickHandler={() => sortBy('va')} />
+              </th>
+              <th>
+                <CLabel label="V2" sort="vb" sorter={sorter} clickHandler={() => sortBy('vb')} />
+              </th>
+              <th>
+                <CLabel label="V3" sort="vc" sorter={sorter} clickHandler={() => sortBy('vc')} />
+              </th>
+              <th>
+                <CLabel label="V4" sort="vd" sorter={sorter} clickHandler={() => sortBy('vd')} />
+              </th>
+              <th>
+                <CLabel label="Reko" sort="vx" sorter={sorter} clickHandler={() => sortBy('vx')} />
               </th>
             </tr>
           </thead>
@@ -259,5 +242,22 @@ export default function Screening({ context }: { context: ProjectInfo }) {
         </Table>
       </ScrollArea>
     </>
+  );
+}
+
+interface CLabelProps {
+  label: string;
+  sort: string;
+  sorter: string;
+  clickHandler: () => void;
+}
+function CLabel({ label, sort, sorter, clickHandler }: CLabelProps) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+      <span>{label}</span>
+      <ActionIcon onClick={clickHandler} size={15}>
+        <IconArrowsSort size={14} color={sorter == sort ? '#000' : '#bbb'} />
+      </ActionIcon>
+    </div>
   );
 }
