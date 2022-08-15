@@ -10,7 +10,7 @@ import { Person, randomFeed } from './random-feed';
 
 export default function Screening({ context }: { context: ProjectInfo }) {
   const theme = useMantineTheme();
-  const [daftar, setDaftar] = useState<Person[]>(randomFeed(500));
+  const [daftar, setDaftar] = useState<Person[]>(randomFeed(1000));
   const [sorter, setSorter] = useState('');
   const [sort, setSort] = useState('asc');
 
