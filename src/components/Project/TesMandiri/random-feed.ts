@@ -5,8 +5,8 @@ const norms = [1, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 5];
 const randomValue = () => norms.sort(() => Math.random() - 0.5)[0];
 
 export interface Person {
-  id: number;
-  key: string;
+  id: string;
+  // key: string;
   name: string;
   // rekomendasi: string;
   va: number;
@@ -29,8 +29,8 @@ export function randomFeed(n = 100) {
     const vd = randomValue();
     const vx = (va + vb + vc + vd) / 4;
     rs.push({
-      id: index,
-      key: cuid.slug(),
+      id: cuid.slug(),
+      // key: cuid.slug(),
       va,
       vb,
       vc,

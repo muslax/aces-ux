@@ -1,16 +1,20 @@
 import { ScrollArea, Table, Text } from '@mantine/core';
 import SectionTitle from 'components/SectionTitle';
-import { randomNames } from 'lib/names/names';
 import { ProjectInfo } from 'lib/queries/getProject';
+import { Person } from './random-feed';
 
-export default function Monitoring({ context }: { context: ProjectInfo }) {
-  const names = randomNames(100);
-
-  const rows = names.map((nama, index) => {
+export default function Monitoring({
+  context,
+  daftarPeserta,
+}: {
+  context: ProjectInfo;
+  daftarPeserta: Person[];
+}) {
+  const rows = daftarPeserta.map((person, index) => {
     return (
-      <tr key={nama}>
+      <tr key={person.id}>
         <td>{index + 1}</td>
-        <td>{nama}</td>
+        <td>{person.name}</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
