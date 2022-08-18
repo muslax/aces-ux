@@ -1,4 +1,13 @@
-import { ActionIcon, Checkbox, ScrollArea, Table, useMantineTheme } from '@mantine/core';
+import {
+  ActionIcon,
+  Avatar,
+  Checkbox,
+  Chip,
+  createStyles,
+  ScrollArea,
+  Table,
+  useMantineTheme,
+} from '@mantine/core';
 import { IconArrowsSort } from '@tabler/icons';
 import { Dispatch, useEffect, useState } from 'react';
 import { Person } from './random-feed';
@@ -9,9 +18,11 @@ interface ScreeningTableProps {
 }
 export default function ScreeningTable({ daftar, setDaftar }: ScreeningTableProps) {
   const theme = useMantineTheme();
+  const { classes, cx } = useStyles();
   const [sorter, setSorter] = useState('name');
   const [sort, setSort] = useState('asc');
   const [list, setList] = useState(daftar);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     if (sorter == 'name') sortByName(true);
@@ -105,6 +116,35 @@ export default function ScreeningTable({ daftar, setDaftar }: ScreeningTableProp
     setSorter(term);
   };
 
+  const VItem = ({ v }: { v: number }) => {
+    if (v === 1) {
+      return (
+        <Avatar
+          src={null}
+          // color="red"
+          size="sm"
+          styles={{
+            root: {
+              width: 20,
+              height: 20,
+              minWidth: 20,
+              margin: '0 auto',
+            },
+            placeholder: {
+              fontSize: 13,
+              fontWeight: 400,
+              color: 'white',
+              backgroundColor: theme.colors.red[6],
+            },
+          }}
+        >
+          1
+        </Avatar>
+      );
+    }
+    return <>{v}</>;
+  };
+
   const rows = list
     .filter((person) => !person.hidden)
     .map((person: Person, index: number) => {
@@ -124,10 +164,18 @@ export default function ScreeningTable({ daftar, setDaftar }: ScreeningTableProp
               }}
             />
           </td>
-          <td>{person.va}</td>
-          <td>{person.vb}</td>
-          <td>{person.vc}</td>
-          <td>{person.vd}</td>
+          <td style={{ textAlign: 'center' }}>
+            <VItem v={person.va} />
+          </td>
+          <td style={{ textAlign: 'center' }}>
+            <VItem v={person.vb} />
+          </td>
+          <td style={{ textAlign: 'center' }}>
+            <VItem v={person.vc} />
+          </td>
+          <td style={{ textAlign: 'center' }}>
+            <VItem v={person.vd} />
+          </td>
           <td
             style={{
               color:
@@ -145,9 +193,9 @@ export default function ScreeningTable({ daftar, setDaftar }: ScreeningTableProp
     });
 
   return (
-    <ScrollArea>
+    <ScrollArea style={{ height: 460 }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
       <Table verticalSpacing="xs">
-        <thead>
+        <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
           <tr>
             <th style={{ width: 24 }}>#</th>
             <th>
@@ -193,3 +241,27 @@ function CLabel({ label, sort, sorter, clickHandler }: CLabelProps) {
     </div>
   );
 }
+
+const useStyles = createStyles((theme) => ({
+  header: {
+    position: 'sticky',
+    top: 0,
+    backgroundColor: '#fff',
+    transition: 'box-shadow 150ms ease',
+    zIndex: 9,
+
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 9,
+      borderBottom: `1px solid ${theme.colors.gray[3]}`,
+    },
+  },
+
+  scrolled: {
+    boxShadow: theme.shadows.sm,
+  },
+}));
